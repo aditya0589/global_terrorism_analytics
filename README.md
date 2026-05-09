@@ -71,38 +71,6 @@ https://www.kaggle.com/datasets/START-UMD/gtd
 
 ---
 
-## Project Structure
-
-```text
-terrorism-hotspots/
-│
-├── README.md
-├── data/
-│   └── README.md
-│
-├── sql/
-│   ├── 01_exploration.sql
-│   ├── 02_temporal_trends.sql
-│   ├── 03_hotspot_countries.sql
-│   ├── 04_attack_types.sql
-│   ├── 05_terrorist_groups.sql
-│   └── 06_casualty_analysis.sql
-│
-├── visualizations/
-│   ├── attacks_per_year.png
-│   ├── top_countries.png
-│   ├── regional_heatmap.png
-│   └── terrorism_map.html
-│
-├── insights/
-│   └── key_findings.md
-│
-└── setup/
-    └── import_instructions.md
-```
-
----
-
 # Analytical Workflow
 
 ## 1. Data Exploration
@@ -190,12 +158,6 @@ Examined the human impact of terrorism incidents.
 ---
 
 # Key Insights
-
-- Terrorism activity showed major growth between 2005–2015
-- Iraq, Afghanistan, and Pakistan experienced the highest number of incidents
-- Bombings/explosions were the most frequently used attack methods
-- Certain organizations demonstrated strong regional concentration patterns
-- Casualty severity varied significantly across regions and attack types
 
 Detailed findings are documented in:
 
