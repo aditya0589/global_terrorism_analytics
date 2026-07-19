@@ -1,306 +1,86 @@
 # Global Terrorism Hotspots Analysis  
-### SQL-Based Exploratory Data Analysis on Global Terrorism Trends
+
+<div align="center">
+  <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200" alt="Global Network/Crisis Banner" width="100%" />
+</div>
+
+### A Data-Driven Strategic Review of Global Terrorism Trends (1970–Present)
 
 ---
 
-## Overview
+## Executive Objective
 
-This project analyzes global terrorism incidents using the **Global Terrorism Database (GTD)** to identify high-risk regions, attack patterns, casualty trends, and active terrorist organizations through SQL-driven exploratory data analysis.
+This project leverages advanced SQL-driven analytics on the **Global Terrorism Database (GTD)** to extract actionable intelligence regarding global terrorism trends. Moving beyond basic descriptive statistics, the primary objective is to equip policy-makers, security agencies, and defense researchers with data-backed insights into geographic vulnerabilities, tactical evolutions, and the changing lethality of terrorist organizations.
 
-The objective of this analysis is to transform raw terrorism incident data into actionable insights using structured querying, analytical reasoning, and visual storytelling.
-
-This project demonstrates practical skills in:
-
-- SQL analytics
-- Cloud-based data processing
-- Exploratory Data Analysis (EDA)
-- Data visualization
-- Trend analysis
-- Geospatial analytics
-- Insight generation
-- Analytical reporting
+The ultimate goal is to identify patterns that can inform predictive resource allocation and strategic counter-terrorism interventions.
 
 ---
 
-## Business Problem
+## Key Strategic Findings
 
-Governments, security agencies, and policy researchers require data-driven insights to understand:
+Detailed analytical outputs and visualizations are documented in the [`key_insights/`](key_insights/) directory. Below is a high-level summary of the critical discoveries:
 
-- Which countries and regions experience the highest concentration of terrorist incidents
-- How terrorism trends evolve over time
-- Which attack methods are most frequently used
-- Which terrorist organizations are most active
-- How casualty severity differs across regions
+### 1. The 80/20 Rule of Geographic Concentration
+Terrorism is not a globally uniform threat. Our data reveals a stark geographic concentration, with a small subset of nations bearing the overwhelming majority of global attacks. 
+- **The Epicenters:** Iraq and Afghanistan consistently rank as the most volatile nations globally.
+- **Strategic Impact:** International policy interventions and humanitarian aid yield the highest Return on Investment (ROI) when targeted specifically at stabilizing the Middle East & North Africa (MENA) and South Asia.
 
-This project uses structured analytical workflows to uncover meaningful patterns from historical terrorism data.
+### 2. The Escalation of Lethality (YoY Trends)
+By applying Window Functions to track Year-Over-Year (YoY) casualty metrics, a deeply concerning trend emerged:
+- **Insight:** In several key regions (such as Sub-Saharan Africa), the total *volume* of attacks has plateaued or decreased, but the *casualties per attack* have spiked.
+- **Strategic Impact:** Terrorist organizations are shifting from high-frequency, low-impact attacks to lower-frequency, high-casualty mass casualty events (MCEs), indicating a shift in strategic objectives toward maximizing civilian and structural damage.
 
----
-
-## Dataset
-
-### Global Terrorism Database (GTD)
-
-The dataset contains worldwide terrorism incident records including:
-
-- Attack date
-- Country and region
-- Attack type
-- Target type
-- Terrorist organization
-- Casualties
-- Geographic coordinates
-
-**Dataset Source:**  
-https://www.kaggle.com/datasets/START-UMD/gtd
-
-> Dataset files are excluded from this repository due to licensing and file size limitations.
+### 3. Operational Tactics & The Dominance of Explosives
+- **Insight:** "Bombing/Explosion" remains the overwhelmingly dominant attack type globally. Furthermore, as conventional military presence increased post-2000, major groups rapidly shifted their tactical pipelines towards Improvised Explosive Devices (IEDs) and suicide bombings.
+- **Strategic Impact:** Counter-terrorism intelligence should heavily prioritize the interdiction of explosive supply chains (e.g., commercial mining explosives, agricultural fertilizers) as a primary preventative measure over static point defense.
 
 ---
 
-## Tech Stack
+## 🛠 Analytical Methodology
 
-| Category | Tools Used |
-|---|---|
-| Cloud Platform | Databricks |
-| Storage | Databricks Volumes |
-| Query Engine | Databricks SQL |
-| Languages | SQL, Python |
-| Data Processing | Pandas |
-| Visualization | Matplotlib, Seaborn, Folium |
-| Environment | Jupyter Notebook |
+This project utilized a modern, cloud-based data processing stack to transform raw incident records into structured intelligence.
 
----
+### Data Architecture
+- **Environment:** Databricks SQL Workspace & Databricks Query Editor
+- **Storage:** Unity Catalog Volumes
+- **Core Engine:** Databricks SQL 
+- **Visualization:** Python (Pandas, Matplotlib, Seaborn, Folium) inside Jupyter Notebooks
 
-# Analytical Workflow
-
-## 1. Data Exploration
-
-Performed initial dataset exploration to understand:
-
-- Total records
-- Missing values
-- Country distribution
-- Regional coverage
-- Attack classifications
-
-### Key Operations
-- Null analysis
-- Frequency distributions
-- Descriptive statistics
-- Data quality inspection
+### Data Engineering & Analytics Pipeline
+1. **Data Normalization & Cleaning:** 
+   - Handled extensive missing data utilizing `COALESCE` functions to prevent the dropping of valuable partial records.
+   - Engineered new composite metrics (e.g., combining fatalities and injuries into a unified `casualties` index) for more accurate severity tracking.
+2. **Advanced SQL Querying:**
+   - Deployed **Common Table Expressions (CTEs)** to modularize complex sub-queries and group historical data by decades and active organizations.
+   - Utilized **Window Functions (`LAG()`, `RANK()`)** to calculate dynamic Year-Over-Year percentage changes and programmatically rank evolving weapon preferences over time.
+3. **Geospatial & Trend Analysis:**
+   - Mapped attack densities and temporal shifts to visually represent the migration of conflict zones.
 
 ---
 
-## 2. Temporal Trend Analysis
+## Project Structure
 
-Analyzed terrorism incidents over time to identify:
-
-- Yearly growth trends
-- Peak attack periods
-- Long-term escalation patterns
-
-### Example Insights
-- Significant increase in attacks during the 2010s
-- Temporal clustering in politically unstable regions
+- `sql/`: Contains all foundational and advanced analytical SQL scripts used for data extraction and trend calculation.
+  - *Highlights:* `advanced_analytics.sql` (CTEs and Window Function implementations)
+- `key_insights/`: Houses detailed breakdowns of the findings, including the Executive Summary and Results Explanation.
+- `notebooks/`: Jupyter Notebooks containing the Python code used for generating Matplotlib/Seaborn data visualizations.
+- `visualizations/`: Exported static and interactive charts/maps representing the data narrative.
 
 ---
 
-## 3. Geographic Hotspot Analysis
+## Future Enhancements
 
-Identified countries and regions with the highest terrorism activity.
-
-### Analysis Included
-- Top affected countries
-- Regional attack concentration
-- Geographic distribution mapping
-
-### Key Findings
-- Iraq and Afghanistan recorded the highest attack frequencies
-- Middle East and South Asia emerged as major hotspots
+To further increase the strategic utility of this data, future iterations of this project will aim to implement:
+- **Predictive Hotspot Modeling:** Utilizing Machine Learning clustering algorithms to identify emerging regions at risk of destabilization before they hit peak casualty rates.
+- **Interactive Web Dashboards:** Deploying a live Power BI or Tableau dashboard to allow stakeholders to dynamically filter trends by specific organizations or date ranges.
+- **Time-Series Forecasting:** Predicting short-term attack volumes based on historical seasonal trends in volatile regions.
 
 ---
 
-## 4. Attack Type Analysis
-
-Studied operational patterns used in terrorist incidents.
-
-### Metrics Analyzed
-- Most common attack methods
-- Success rates
-- Weapon type distribution
-
-### Findings
-- Bombings and explosions represented the dominant attack category globally
+### Dataset Attribution
+This analysis is built upon the **Global Terrorism Database (GTD)**.  
+*Dataset Source:* [Kaggle - START-UMD GTD](https://www.kaggle.com/datasets/START-UMD/gtd)  
+*(Note: The raw dataset file is excluded from this repository due to licensing and file size limitations.)*
 
 ---
-
-## 5. Terrorist Organization Analysis
-
-Analyzed the activity of terrorist organizations.
-
-### Focus Areas
-- Most active groups
-- Group-wise attack volume
-- Regional concentration of organizations
-
----
-
-## 6. Casualty & Severity Analysis
-
-Examined the human impact of terrorism incidents.
-
-### Metrics
-- Fatalities
-- Injuries
-- High-casualty events
-- Country-wise casualty severity
-
----
-
-# Key Insights
-
-Detailed findings are documented in:
-
-```text
-insights/key_findings.md
-```
-
----
-
-# Visualizations
-
-The project includes both static and interactive visualizations.
-
-## Included Visual Outputs
-
-- Attacks per year
-- Top affected countries
-- Regional heatmaps
-- Interactive terrorism map
-
----
-
-
-# Setup Instructions
-
-## Environment
-
-This project was developed using:
-
-- Databricks SQL Workspace
-- Databricks Query Editor
-- Unity Catalog Volumes
-- SQL
-- Python Visualization Libraries
-
----
-
-## Data Import Process
-
-### 1. Create a Volume
-
-A Databricks Volume was created to store the dataset file.
-
----
-
-### 2. Upload Dataset
-
-The Global Terrorism Database CSV file was uploaded into the Databricks Volume storage.
-
----
-
-### 3. Create SQL Table
-
-The dataset was imported into a structured table using Databricks SQL.
-
-Example:
-
-```sql
-CREATE TABLE terrorism_data
-USING CSV
-OPTIONS (
-  path '/Volumes/workspace/default/gtd/globalterrorismdb.csv',
-  header 'true',
-  inferSchema 'true'
-);
-```
-
----
-
-### 4. Run SQL Analysis
-
-All analysis queries were executed using the Databricks SQL Query Editor.
-
-The project includes:
-- Exploratory analysis
-- Temporal trend analysis
-- Hotspot detection
-- Attack type analysis
-- Casualty analysis
-- Terrorist organization analysis
-
----
-
-# Visualization Workflow
-
-Query outputs were exported and visualized using:
-
-- Python
-- Pandas
-- Matplotlib
-- Seaborn
-- Folium
-
-Visual outputs are available in the `visualizations/` directory.
-
----
-
-# Future Enhancements
-
-Potential improvements for future versions:
-
-- Power BI / Tableau dashboard integration
-- Predictive hotspot modeling
-- Time-series forecasting
-- Machine learning clustering
-- Real-time terrorism monitoring pipeline
-- Interactive web dashboard deployment
-
----
-
-# Skills Demonstrated
-
-## Data Analytics
-- Exploratory Data Analysis (EDA)
-- Trend Analysis
-- Geospatial Analysis
-- Insight Generation
-
-## SQL
-- Aggregations
-- GROUP BY analysis
-- Window functions
-- Joins
-- Filtering and ranking queries
-
-## Cloud Analytics
-- Databricks SQL
-- Databricks Volumes
-- Cloud-based querying
-- Structured data management
-
-## Visualization
-- Statistical visualization
-- Geographic mapping
-- Interactive dashboards
-
----
-
-# Author
-
-**Aditya**  
----
-
-# License
-
-This project is intended for educational, analytical, and research purposes only.
+**Author:** Aditya
