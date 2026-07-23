@@ -1,8 +1,5 @@
 # Global Terrorism Hotspots Analysis  
 
-<div align="center">
-  <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200" alt="Global Network/Crisis Banner" width="100%" />
-</div>
 
 ### A Data-Driven Strategic Review of Global Terrorism Trends (1970–Present)
 
@@ -36,7 +33,7 @@ By applying Window Functions to track Year-Over-Year (YoY) casualty metrics, a d
 
 ---
 
-## 🛠 Analytical Methodology
+## Analytical Methodology
 
 This project utilized a modern, cloud-based data processing stack to transform raw incident records into structured intelligence.
 
